@@ -1,3 +1,5 @@
+import Input from "./input";
+
 const Header = () => {
   return (
     <header className="flex fixed
@@ -10,7 +12,7 @@ const Header = () => {
          ">
       <div className="mx-auto flex items-center justify-between w-11/12 gap-52">
         <div>
-            <a>
+            <a href="/">
                 <img
                   src="/assets/logo.png"
                   alt="Company Logo"
@@ -19,10 +21,7 @@ const Header = () => {
             </a>
         </div>
         <div className="w-4/5">
-            <input  className=" rounded bg-gray-200 w-full p-2 outline-none"
-             placeholder="Search...">
-
-            </input>
+          <Input />
         </div>
         <div>Carrinho</div>
       </div>
