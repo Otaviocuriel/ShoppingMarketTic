@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 const Card = () => {
     return (
         <div className="bg-white p-4 w-60 rounded-2xl shadow-md">
@@ -15,9 +17,9 @@ const Card = () => {
                 </div>
               
             </div>
-                        <button className="w-full bg-blue-500 py-2 px-4 hover:bg-blue-700 hover:!text-white">
-							Adicionar ao carrinho
-						</button>
+						<Button variant="primary">
+                Adicionar ao carrinho
+            </Button>
         </div>
     )
 };
