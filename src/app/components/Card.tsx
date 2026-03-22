@@ -1,6 +1,6 @@
 const Card = () => {
     return (
-        <div className="bg-white p-2 w-60 rounded-2xl shadow-md">
+        <div className="bg-white p-4 w-60 rounded-2xl shadow-md">
             <div>
                 <img src="/assets/produtos/tenis.jpg">
                 
@@ -15,6 +15,9 @@ const Card = () => {
                 </div>
               
             </div>
+                        <button className="w-full bg-blue-500 py-2 px-4 hover:bg-blue-700 hover:!text-white">
+							Adicionar ao carrinho
+						</button>
         </div>
     )
 };
