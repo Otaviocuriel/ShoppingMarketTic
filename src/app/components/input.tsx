@@ -7,7 +7,7 @@ const inputVariants = tv({
 const Input = () => {
     return (
         <div>
-            <input  className={inputVariants.base}
+            <input  className={inputVariants()}
              placeholder="Search...">
             </input>
         </div>
