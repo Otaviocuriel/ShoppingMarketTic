@@ -1,19 +1,24 @@
 import Button from "./Button";
+import type { ProductProps } from "../../interfaces/Product";
 
-const Card = () => {
+interface CardProps {
+    product: ProductProps;
+}
+
+const Card = ({ product }: CardProps) => {
     return (
-        <div className="bg-white p-4 w-60 rounded-2xl shadow-md">
+        <div className="bg-white p-3 w-36 rounded-2xl shadow-md">
             <div>
-                <img src="/assets/produtos/tenis.jpg">
+                <img className="w-full h-16 object-contain" src={`/assets/produtos/${product.image}.jpg`} alt={product.name}>
                 
                 </img>
             </div>
-            <div className="p-4">
+            <div className="p-2">
                 <div className="flex justify-center items-center mb-2">
-                   <h3>Name Product</h3> 
+                   <h3 className="text-sm text-center">{product.name}</h3> 
                 </div>
                 <div className="flex justify-center items-center">
-                    <span>Valor do Produto</span>
+                    <span className="text-sm">R$ {product.price.toFixed(2)}</span>
                 </div>
               
             </div>
