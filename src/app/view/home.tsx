@@ -1,12 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
-import findAll from "../services/product.service"
+import findAll from "../../services/product.service";
+import type { ProductProps } from "../../interfaces/Product";
 
 const Home = () => {
-		useEffect(() => {
-			findAll().then((res)=> console.log(res))
-		})
-	return <Card/>;
+  const [products, setProducts] = useState<ProductProps[]>([]);
+
+  useEffect(() => {
+    findAll().then((res) => setProducts(res));
+  }, []);
+
+  return (
+    <>
+      {products.map((item) => (
+        <Card key={item.id} product={item} />
+      ))}
+    </>
+  );
 };
 
 export default Home;
