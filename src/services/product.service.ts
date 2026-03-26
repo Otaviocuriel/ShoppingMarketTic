@@ -1,5 +1,5 @@
 import http from '../http-common';
-import  {ProductProps} from '../interfaces/Product';
+import type { ProductProps } from "../interfaces/Product";
 
 const findAll = async () => {
 	const response = await http.get<ProductProps[]>('/products');
