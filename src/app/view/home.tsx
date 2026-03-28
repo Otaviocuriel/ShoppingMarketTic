@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <>
-      {products.map((item) => (
+      {products.filter((item) => item.name === "tênis").map((item) => (
         <Card key={item.id} product={item} />
       ))}
     </>
