@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import findAll from "../../services/product.service";
 import type { ProductProps } from "../../interfaces/Product";
+import { useQuery } from "react-query";
 
 const Home = () => {
-  const [products, setProducts] = useState<ProductProps[]>([]);
-
-  useEffect(() => {
-    findAll().then((res) => setProducts(res));
-  }, []);
+  const {
+    data: products,
+    error,
+    isLoading,
+  } = useQuery<ProductProps[], Error>("query-products", async () => {
+    return findAll();
+  });
 
   return (
     <>
-      {products.filter((item) => item.name === "tênis").map((item) => (
-        <Card key={item.id} product={item} />
-      ))}
+      {products?.map((product) => {
+        return <Card key={product.id} product={product} />;
+      })}
     </>
   );
 };
