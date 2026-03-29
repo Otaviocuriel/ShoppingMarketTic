@@ -9,8 +9,8 @@ const Home = () => {
   });
 
   return (
-		<div className="pt-24 pb-12">
-    <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-16">
+		<div className="mt-24 h-4/5 w-full flex flex-col items-center justify-center gap-16">
+    <div className="grid h-5/6 w-11/12 grid-cols-4 gap-4 over-flow-x-auto">
       {products?.map((product) => {
         return <Card key={product.id} product={product} />;
       })}
