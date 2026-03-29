@@ -6,3 +6,7 @@ export interface ProductProps{
 	category: string,
 	image: string,
 }
+
+export interface Product{
+	item: ProductProps;
+}
