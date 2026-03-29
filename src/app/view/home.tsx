@@ -13,11 +13,11 @@ const Home = () => {
   });
 
   return (
-    <>
+    <div>
       {products?.map((product) => {
         return <Card key={product.id} product={product} />;
       })}
-    </>
+    </div>
   );
 };
 
