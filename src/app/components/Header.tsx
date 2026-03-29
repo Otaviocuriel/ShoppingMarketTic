@@ -2,15 +2,8 @@ import Input from "./input";
 
 const Header = () => {
   return (
-    <header className="flex fixed
-     justify-center
-      top-0
-       right-0
-        w-full
-         bg-white
-         py-3
-         ">
-      <div className="mx-auto flex items-center justify-between w-11/12 gap-52">
+    <header className="fixed top-0 right-0 z-10 flex w-full justify-center bg-[#e9e2d1] py-3">
+      <div className="mx-auto flex w-[min(1100px,92%)] items-center justify-between gap-10">
         <div>
             <a href="/">
                 <img
@@ -20,10 +13,10 @@ const Header = () => {
                 />
             </a>
         </div>
-        <div className="w-4/5">
+        <div className="w-full">
           <Input />
         </div>
-        <div>Carrinho</div>
+        <div className="w-24 text-transparent">Carrinho</div>
       </div>
     </header>
   );

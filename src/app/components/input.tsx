@@ -1,7 +1,7 @@
 import {tv} from "tailwind-variants";
 
 const inputVariants = tv({
-    base:"rounded bg-gray-200 w-full p-2 outline-none"
+    base:"w-full rounded-sm bg-[#d8d2c3] p-2 text-sm outline-none placeholder:text-[#7c7567]"
 
 })
 const Input = () => {

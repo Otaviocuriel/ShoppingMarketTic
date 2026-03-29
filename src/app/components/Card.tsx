@@ -6,12 +6,17 @@ type CardProps = {
 
 const Card = ({ product }: CardProps) => {
   return (
-    <div className="flex flex-col items-center justify-center p-8">
-      <div className="bg-white rounded-lg shadow-lg p-8 w-80">
-        <img src={`/assets/produtos/${product.image}.jpg`} className="w-full h-64 object-cover rounded-lg" />
-        <h2 className="mt-4 text-center text-lg font-semibold">{product.name}</h2>
-        <button className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-          Adicionar
+    <div className="flex flex-col items-center justify-center p-2 text-center">
+      <div className="flex flex-col items-center justify-center">
+        <img
+          src={`/assets/produtos/${product.image}.jpg`}
+          className="h-auto w-48 object-contain"
+          alt={product.name}
+        />
+        <h2 className="mt-6 text-lg font-semibold capitalize text-[#1f1f1f]">{product.name}</h2>
+        <p className="mt-1 text-lg font-medium text-[#2f2f2f]">R$ {product.price.toFixed(2)}</p>
+        <button className="mt-4 rounded bg-blue-600 px-7 py-2 text-sm font-semibold text-white transition hover:bg-blue-700">
+          Adicionar no Carrinho
         </button>
       </div>
     </div>

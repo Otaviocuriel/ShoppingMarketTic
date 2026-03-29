@@ -13,7 +13,7 @@ function App() {
 
   }])
   return (
-   <div className="bg-gray-200 min-h-screen w-full">
+   <div className="bg-[#f5f0df] min-h-screen w-full">
      <RouterProvider router={route}/>
     </div>
   );
