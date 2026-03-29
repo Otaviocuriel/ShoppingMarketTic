@@ -16,7 +16,7 @@ const Header = () => {
         <div className="w-full">
           <Input />
         </div>
-        <div className="w-24 text-transparent">Carrinho</div>
+        <div className="w-24 text-right font-semibold text-[#2f2f2f]">Carrinho</div>
       </div>
     </header>
   );
