@@ -1,13 +1,16 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Header from './app/components/Header';
 import Home from "./app/view/home";
+import { useState } from "react";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const route = createBrowserRouter([{
     path: '/',
     element:<>
-      <Header/>
-      <Home/>
+      <Header onSearchChange={setSearchTerm} />
+      <Home searchTerm={searchTerm} />
     </>
 
 

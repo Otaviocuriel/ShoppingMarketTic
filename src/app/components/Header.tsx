@@ -1,12 +1,16 @@
 import Input from "./input";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useQuery } from "react-query";
 import ProductService from "../../services/product.service";
 import type { ProductProps } from "../../interfaces/Product";
 import { debounce } from "lodash";
 
-const Header = () => {
+type HeaderProps = {
+	onSearchChange: (value: string) => void;
+};
+
+const Header = ({ onSearchChange }: HeaderProps) => {
 	const [productName, setProductName] = useState("");
 
 	const { data: productByName } = useQuery<ProductProps[], Error>(["query-product-by-name", productName], async () => {
@@ -22,7 +26,17 @@ const Header = () => {
 		setProductName(value);
 	}
 
-	const debounceHandleOnChange = debounce(handleInput,500)
+	const debounceHandleOnChange = useMemo(() => debounce(handleInput, 500), []);
+
+	useEffect(() => {
+		onSearchChange(productName);
+	}, [onSearchChange, productName]);
+
+	useEffect(() => {
+		return () => {
+			debounceHandleOnChange.cancel();
+		};
+	}, [debounceHandleOnChange]);
 
 
  return (
