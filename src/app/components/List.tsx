@@ -20,10 +20,11 @@ type ListProps = ComponentProps<"li"> & VariantProps<typeof ListVariant>;
 const List = ({children, className, onClick, variant, ...props}: ListProps) => {
 	const ListClass = twMerge(ListVariant({variant}), className)
 
-	return
+	return (
 	 <li className={ListClass} onClick={onClick} {...props}>
 		{children}
-	</li>;
+	</li>
+	);
 }
 
 export default List;
