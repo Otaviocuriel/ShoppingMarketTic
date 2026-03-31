@@ -52,13 +52,21 @@ const Header = ({ onSearchChange }: HeaderProps) => {
                 />
             </a>
         </div>
-		<div className="w-full">
+		<div className="w-4/5 relative">
 					<Input onChange={debounceHandleOnChange} />
-					<ul>
+					<ul className="">
 						{
 							productByName?.map((product: ProductProps) => {
-								return <List>
+								return <List className="">
 										{product.name}
+								<div>
+										<img src={`http://localhost:5173/public/assets/produtos/${product.image}.jpg`}
+										className="h-20 rounded-t-lg object-cover"
+										/>
+												<span>
+													{product.price}
+												</span>
+								</div>
 								</List>;
 								
 							
