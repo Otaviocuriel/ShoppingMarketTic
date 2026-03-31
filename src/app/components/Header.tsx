@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import ProductService from "../../services/product.service";
 import type { ProductProps } from "../../interfaces/Product";
 import { debounce } from "lodash";
+import List from "./List";
 
 type HeaderProps = {
 	onSearchChange: (value: string) => void;
@@ -51,16 +52,16 @@ const Header = ({ onSearchChange }: HeaderProps) => {
                 />
             </a>
         </div>
-        <div className="w-full">
+		<div className="w-full">
 					<Input onChange={debounceHandleOnChange} />
 					<ul>
 						{
 							productByName?.map((product: ProductProps) => {
-								return (
-									<li key={product.id}>
+								return <List>
 										{product.name}
-									</li>
-								)
+								</List>;
+								
+							
 							})
 					  }
 					</ul>
