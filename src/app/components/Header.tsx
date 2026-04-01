@@ -1,11 +1,12 @@
 import Input from "./input";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useQuery } from "react-query";
 import ProductService from "../../services/product.service";
 import type { ProductProps } from "../../interfaces/Product";
 import { debounce } from "lodash";
 import List from "./List";
+import { useOnClickOutside } from "../hooks/useClickOutside";
 
 type HeaderProps = {
 	onSearchChange: (value: string) => void;
@@ -14,6 +15,7 @@ type HeaderProps = {
 const Header = ({ onSearchChange }: HeaderProps) => {
 	const [productName, setProductName] = useState("");
 	const[isOpen, setIsOpen] = useState(false);
+	const refDropdown = useRef<HTMLUListElement>(null);
 
 
 	const { data: productByName } = useQuery<ProductProps[], Error>(["query-product-by-name", productName], async () => {
@@ -30,7 +32,11 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 	const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value;
 		setProductName(value);
-	}
+	};
+
+	useOnClickOutside(refDropdown,() => {
+		setIsOpen(false);
+	});
 
 	const debounceHandleOnChange = useMemo(() => debounce(handleInput, 500), []);
 
@@ -60,7 +66,9 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 		<div className="w-4/5 relative">
 					<Input onChange={debounceHandleOnChange} />
 					{isOpen && 
-					<ul className="absolute z-50 mt-4 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg">
+					<ul 
+					ref={refDropdown}
+					className="absolute z-50 mt-4 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg">
 						{
 							productByName?.map((product: ProductProps) => {
 								return <List className="items-center justify-between">
