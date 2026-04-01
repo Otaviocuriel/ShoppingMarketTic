@@ -13,12 +13,17 @@ type HeaderProps = {
 
 const Header = ({ onSearchChange }: HeaderProps) => {
 	const [productName, setProductName] = useState("");
+	const[isOpen, setIsOpen] = useState(false);
+
 
 	const { data: productByName } = useQuery<ProductProps[], Error>(["query-product-by-name", productName], async () => {
 		return ProductService.searchName(productName);
 	},{
 		enabled: productName.length > 0,
-	}
+		onSuccess:(res) => {
+			setIsOpen(res?.length > 0);
+		},
+	},
 
 );
 
@@ -42,7 +47,7 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 
  return (
     <header className="fixed top-0 right-0 z-10 flex w-full justify-center bg-[#e9e2d1] py-3">
-      <div className="mx-auto flex w-[min(1100px,92%)] items-center justify-between gap-10">
+      <div className=" mx-auto flex w-[min(1100px,92%)] items-center justify-between gap-10">
         <div>
             <a href="/">
                 <img
@@ -54,16 +59,17 @@ const Header = ({ onSearchChange }: HeaderProps) => {
         </div>
 		<div className="w-4/5 relative">
 					<Input onChange={debounceHandleOnChange} />
-					<ul className="">
+					{isOpen && 
+					<ul className="absolute z-50 mt-4 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg">
 						{
 							productByName?.map((product: ProductProps) => {
-								return <List className="">
+								return <List className="items-center justify-between">
 										{product.name}
 								<div>
 										<img src={`http://localhost:5173/public/assets/produtos/${product.image}.jpg`}
 										className="h-20 rounded-t-lg object-cover"
 										/>
-												<span>
+												<span>R$
 													{product.price}
 												</span>
 								</div>
@@ -71,8 +77,10 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 								
 							
 							})
-					  }
+					  }	
 					</ul>
+					}
+					
         </div>
         <div className="w-24 text-right font-semibold text-[#2f2f2f]">Carrinho</div>
       </div>

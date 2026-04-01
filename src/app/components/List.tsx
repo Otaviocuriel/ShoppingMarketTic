@@ -7,7 +7,11 @@ const ListVariant = tv({
 		variant: {
 			primary: "flex rounded=md px-1 py-4 text-sm capitalize text-gray-700 houver:bg-gray-200"
 		},
-	}	
+		
+	},
+	defaultVariants: {
+			variant: "primary"
+		},
 });
 
 type ListProps = ComponentProps<"li"> & VariantProps<typeof ListVariant>;
