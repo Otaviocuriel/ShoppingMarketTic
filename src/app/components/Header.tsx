@@ -75,7 +75,7 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 										{product.name}
 								<div>
 										<img src={`/assets/produtos/${product.image}.jpg`}
-										className="h-20 rounded-t-lg object-cover"
+										className="h-20 rounded-t-lg object-cover mix-blend-multiply"
 										alt={product.name}
 										/>
 												<span>R$
