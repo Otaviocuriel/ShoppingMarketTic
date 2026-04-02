@@ -6,7 +6,7 @@ const Card = ({item}: Product) => {
       <div className="flex w-full flex-col items-center text-center">
         <img
           src={`/assets/produtos/${item.image}.jpg`}
-          className="h-36 w-full rounded-xl object-contain"
+          className="h-36 w-full rounded-xl object-contain mix-blend-multiply"
           alt={item.name}
         />
         <h2 className="mt-5 min-h-[3.25rem] text-xl font-semibold leading-6 capitalize text-[#202020]">{item.name}</h2>
