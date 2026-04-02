@@ -71,11 +71,12 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					className="absolute z-50 mt-4 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg">
 						{
 							productByName?.map((product: ProductProps) => {
-								return <List className="items-center justify-between">
+								return <List key={product.id} className="items-center justify-between">
 										{product.name}
 								<div>
-										<img src={`http://localhost:5173/public/assets/produtos/${product.image}.jpg`}
+										<img src={`/assets/produtos/${product.image}.jpg`}
 										className="h-20 rounded-t-lg object-cover"
+										alt={product.name}
 										/>
 												<span>R$
 													{product.price}

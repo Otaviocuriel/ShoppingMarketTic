@@ -5,7 +5,7 @@ import { tv, type VariantProps } from "tailwind-variants"
 const ListVariant = tv({
 	variants: {
 		variant: {
-			primary: "flex rounded=md px-1 py-4 text-sm capitalize text-gray-700 houver:bg-gray-200"
+			primary: "flex rounded-md px-1 py-4 text-sm capitalize text-gray-700 hover:bg-gray-200"
 		},
 		
 	},
