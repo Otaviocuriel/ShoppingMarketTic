@@ -16,7 +16,7 @@ function App() {
 
   }])
   return (
-   <div className="bg-[#f5f0df] min-h-screen w-full">
+   <div className="min-h-screen w-full bg-gradient-to-b from-[#f3efdf] via-[#eee9d7] to-[#e8e3cf]">
      <RouterProvider router={route}/>
     </div>
   );
