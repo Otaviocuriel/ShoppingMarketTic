@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
-const menuListVariants = "absolute z-10 mt-1 w-48 rounded-md bg-white py-1 shadow-lg";
+const menuListVariants = "absolute z-10 mt-2 w-52 rounded-xl border border-[#d8d2c2] bg-[#fbf8ee] p-2 shadow-xl shadow-black/10";
 
 type HomeProps = {
   searchTerm: string;
@@ -19,16 +19,16 @@ const Home = ({ searchTerm }: HomeProps) => {
     {
     value: "desc",
     name: "Maior preço",
-    class: "flex justify-center w-full"
+    class: "flex w-full justify-center"
   },
   {
     value: "asc",
     name: "Menor preço",
-    class: "flex justify-center w-full"
+    class: "flex w-full justify-center"
   },
 ];
 
-  const { data: products } = useQuery<ProductProps[], Error>("query-products", async () => {
+  const { data: products } = useQuery<ProductProps[], Error>(["query-products", typeFilter], async () => {
     return ProductService.findAll(typeFilter);
   });
 
@@ -42,7 +42,7 @@ const Home = ({ searchTerm }: HomeProps) => {
 
   const menuListClasses = twMerge(menuListVariants,
    isOpenMenu
-    ? "flex items-center flex-col absolute top-60 bg-white rounded-md p-4 shadow-lg shadow-black w-44":
+    ? "absolute right-0 top-10 flex w-44 flex-col items-center gap-2":
      "hidden")
 
   const normalizedSearch = searchTerm.trim().toLowerCase();
@@ -52,15 +52,15 @@ const Home = ({ searchTerm }: HomeProps) => {
 
   return (
 		<div className="mt-24 flex w-full flex-col items-center px-4 pb-10 sm:px-6 lg:px-8">
-      <div className="mb-6 flex flex-col items-center">
-        <button className="mb-1 w-24 rounded-sm bg-blue-600 py-1 text-xs font-medium text-white" onClick={() => handleFilterButton()}>
+      <div className="relative mb-8 flex w-4/5 flex-col items-end">
+        <button className="mb-5 w-20 rounded-md border border-blue-700 bg-blue-600 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-blue-700" onClick={() => handleFilterButton()}>
           Filtro
         </button>
         <ul className={menuListClasses}>
           {listOptionsFilter.map((item) => {
             return (
               <li key={item.name} className={item.class} onClick={(e) => {e.stopPropagation(); handleFilter(item.value); setIsOpenMenu(false)}} >
-                <button type="button" className="text-xs hover:underline" onClick={() => setTypeFilter(item.value)}>
+                <button type="button" className="w-full rounded-md px-3 py-2 text-center text-xs font-medium text-[#2f2f2f] transition hover:bg-[#ece6d6]" onClick={() => setTypeFilter(item.value)}>
                   {item.name}
                 </button>
               </li>
@@ -68,7 +68,7 @@ const Home = ({ searchTerm }: HomeProps) => {
           })}
         </ul>
       </div>
-    <div className="grid w-full max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+    <div className="grid w-full max-w-7xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       {filteredProducts?.map((product) => {
         return <Card key={product.id} item={product} />;
       })}
