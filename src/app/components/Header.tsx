@@ -1,4 +1,3 @@
-
 import Input from "./input";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
@@ -53,33 +52,33 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 
 
  return (
-    <header className="fixed top-0 right-0 z-10 flex w-full justify-center bg-[#e9e2d1] py-3">
-      <div className=" mx-auto flex w-[min(1100px,92%)] items-center justify-between gap-10">
+		<header className="fixed top-0 right-0 z-20 flex w-full justify-center border-b border-[#d9d3c2] bg-[#e8e2cf]/95 py-3 backdrop-blur-sm">
+			<div className="mx-auto flex w-[min(1120px,92%)] items-center justify-between gap-8">
         <div>
             <a href="/">
                 <img
                   src="/assets/logo.png"
                   alt="Company Logo"
-                  className="max-w-36"
+                  className="max-w-36 drop-shadow-sm"
                 />
             </a>
         </div>
-		<div className="w-4/5 relative">
+		<div className="relative w-4/5">
 					<Input onChange={debounceHandleOnChange} />
 					{isOpen && 
 					<ul 
 					ref={refDropdown}
-					className="absolute z-50 mt-4 max-h-60 w-full overflow-auto rounded-md bg-white shadow-lg">
+					className="absolute z-50 mt-3 max-h-64 w-full overflow-auto rounded-xl border border-[#dfd8c6] bg-[#fcfaf2] p-1 shadow-xl shadow-black/10">
 						{
 							productByName?.map((product: ProductProps) => {
-								return <List key={product.id} className="items-center justify-between">
+								return <List key={product.id} className="items-center justify-between rounded-lg px-3 py-2">
 										{product.name}
 								<div>
 										<img src={`/assets/produtos/${product.image}.jpg`}
-										className="h-20 rounded-t-lg object-cover mix-blend-multiply"
+										className="h-12 w-12 rounded-md object-cover mix-blend-multiply"
 										alt={product.name}
 										/>
-												<span>R$
+												<span className="ml-2 text-sm font-semibold text-[#2f2f2f]">R$
 													{product.price}
 												</span>
 								</div>
@@ -92,7 +91,7 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					}
 					
         </div>
-        <div className="w-24 text-right font-semibold text-[#2f2f2f]">Carrinho</div>
+				<div className="w-24 text-right text-sm font-bold tracking-wide text-[#2f2f2f]">Carrinho</div>
       </div>
     </header>
   );
