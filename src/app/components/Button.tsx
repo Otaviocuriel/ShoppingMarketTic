@@ -5,7 +5,8 @@ import {tv, type VariantProps} from 'tailwind-variants';
 const buttonVariants = tv({
 	variants: {
 		variant: {
-			primary:"w-full bg-blue-500 py-2 px-4 hover:bg-blue-700 hover:!text-white"
+			primary:"w-full bg-blue-500 py-2 px-4 hover:bg-blue-700 hover:!text-white",
+			secondary:"bg-red-500 text-white hover:bg-red-700",
 		},
 	},
 	defaultVariants: {

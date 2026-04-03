@@ -16,8 +16,8 @@ export interface ShoppingCartListContextData {
 	//totalSumAmount: number;
 	//totalQtd: number;
 	addProduct: (id: number, name: string, unitprice: number) => void;
-	//onRemove: (id: number) => void;
-	//onDecrease: (id: number, quantity: number) => void;
+	onRemove: (id: number) => void;
+	onDecrease: (id: number, quantity: number) => void;
 }
 
 const ShoppingListContextDefaultValues = {
@@ -66,8 +66,12 @@ export const ShoppingListProvider = ({
 			return setItems(updateCart);
 		}
 	};
+
+	const onDecrease = (_id: number, _quantity: number) => {};
+	const onRemove = (_id: number) => {};
+
     return (
-        <ShoppingListContext.Provider value={{ items, addProduct }}>
+		<ShoppingListContext.Provider value={{ items, addProduct, onDecrease, onRemove }}>
             {children}
         </ShoppingListContext.Provider>
     )
