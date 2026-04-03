@@ -3,13 +3,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useQuery } from "react-query";
 import ProductService from "../../services/product.service";
+import { CiShoppingCart } from "react-icons/ci";
 import type { ProductProps } from "../../interfaces/Product";
 import { debounce } from "lodash";
 import List from "./List";
 import { useOnClickOutside } from "../hooks/useClickOutside";
 
 type HeaderProps = {
-	onSearchChange: (value: string) => void;
+	onSearchChange?: (value: string) => void;
 };
 
 const Header = ({ onSearchChange }: HeaderProps) => {
@@ -41,7 +42,7 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 	const debounceHandleOnChange = useMemo(() => debounce(handleInput, 500), []);
 
 	useEffect(() => {
-		onSearchChange(productName);
+		onSearchChange?.(productName);
 	}, [onSearchChange, productName]);
 
 	useEffect(() => {
@@ -91,7 +92,9 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					}
 					
         </div>
-				<div>Carrinho</div>
+				<a>
+					<CiShoppingCart className="h-12 w-20"/>
+				</a>
       </div>
     </header>
   );

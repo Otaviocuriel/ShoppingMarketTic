@@ -1,20 +1,18 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Header from './app/components/Header';
 import Home from "./app/view/home";
-import { useState } from "react";
+import Layout from "./app/components/Layout";
+import ShoppingCart from "./app/view/ShoppingCart";
 
 function App() {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const route = createBrowserRouter([{
-    path: '/',
-    element:<>
-      <Header onSearchChange={setSearchTerm} />
-      <Home searchTerm={searchTerm} />
-    </>
-
-
-  }])
+  const route = createBrowserRouter([
+    {
+      element: <Layout />,
+      children: [
+        { path: "/", element: <Home /> },
+        { path: "/ShoppingCart", element: <ShoppingCart /> }
+      ]
+    }
+  ]);
   return (
    <div className="min-h-screen w-full bg-gradient-to-b from-[#f3efdf] via-[#eee9d7] to-[#e8e3cf]">
      <RouterProvider router={route}/>

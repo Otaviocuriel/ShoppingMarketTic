@@ -8,10 +8,10 @@ import { twMerge } from "tailwind-merge";
 const menuListVariants = "absolute z-10 mt-2 w-52 rounded-xl border border-[#d8d2c2] bg-[#fbf8ee] p-2 shadow-xl shadow-black/10";
 
 type HomeProps = {
-  searchTerm: string;
+  searchTerm?: string;
 };
 
-const Home = ({ searchTerm }: HomeProps) => {
+const Home = ({ searchTerm = "" }: HomeProps) => {
   const[typeFilter,setTypeFilter] = useState("");
   const [isOpenMenu, setIsOpenMenu] = useState(false);
 
