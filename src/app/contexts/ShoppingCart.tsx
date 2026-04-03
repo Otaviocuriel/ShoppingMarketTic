@@ -1,3 +1,4 @@
+import { set } from "lodash";
 import { createContext, useContext, useState } from "react";
 
 interface ShoppingListProviderProps {
@@ -66,9 +67,33 @@ export const ShoppingListProvider = ({
 			return setItems(updateCart);
 		}
 	};
+	const onRemove = (_id: number) => {
+		const filteredItems = items.filter((item) => item.id !== _id);
+		setItems(filteredItems);
+	};
 
-	const onDecrease = (_id: number, _quantity: number) => {};
-	const onRemove = (_id: number) => {};
+	const onDecrease = (_id: number, _quantity: number) => {
+		const productAlreadyInCart = items.find((product) => product.id === _id);
+
+		if(productAlreadyInCart && productAlreadyInCart.quantity <= 1) {
+			return onRemove(_id);
+		}
+
+		if (productAlreadyInCart) {
+			const updateCart = items.map((cartItem) => {
+				return cartItem.id === _id
+					? {
+							...cartItem,
+							quantity: Number(cartItem.quantity) - 1,
+							amount: cartItem.amount - _quantity,
+						}
+					: cartItem;
+			});
+
+			setItems(updateCart);
+		}
+	};
+	
 
     return (
 		<ShoppingListContext.Provider value={{ items, addProduct, onDecrease, onRemove }}>

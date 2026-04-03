@@ -57,13 +57,13 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 		<header className="fixed top-0 right-0 z-20 flex w-full justify-center border-b border-[#d9d3c2] bg-[#e8e2cf]/95 py-3 backdrop-blur-sm">
 			<div className="mx-auto flex w-[min(1120px,92%)] items-center justify-between gap-8">
         <div>
-            <a href="/">
+			<Link to="/" relative="path">
                 <img
                   src="/assets/logo.png"
                   alt="Company Logo"
                   className="max-w-36 drop-shadow-sm"
                 />
-            </a>
+			</Link>
         </div>
 		<div className="relative w-4/5">
 					<Input onChange={debounceHandleOnChange} />
