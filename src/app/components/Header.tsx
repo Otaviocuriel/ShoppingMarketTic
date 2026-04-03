@@ -91,7 +91,7 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					}
 					
         </div>
-				<div className="w-24 text-right text-sm font-bold tracking-wide text-[#2f2f2f]">Carrinho</div>
+				<div>Carrinho</div>
       </div>
     </header>
   );
