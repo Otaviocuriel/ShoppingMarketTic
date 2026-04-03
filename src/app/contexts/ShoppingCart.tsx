@@ -1,4 +1,3 @@
-import { set } from "lodash";
 import { createContext, useContext, useState } from "react";
 
 interface ShoppingListProviderProps {
@@ -14,8 +13,8 @@ export interface ListItem {
 
 export interface ShoppingCartListContextData {
 	items: ListItem[];
-	//totalSumAmount: number;
-	//totalQtd: number;
+	totalSumAmount: number;
+	totalQtd: number;
 	addProduct: (id: number, name: string, unitprice: number) => void;
 	onRemove: (id: number) => void;
 	onDecrease: (id: number, quantity: number) => void;
@@ -93,10 +92,9 @@ export const ShoppingListProvider = ({
 			setItems(updateCart);
 		}
 	};
-	
 
     return (
-		<ShoppingListContext.Provider value={{ items, addProduct, onDecrease, onRemove }}>
+		<ShoppingListContext.Provider value={{ items, addProduct, onDecrease, onRemove, totalSumAmount: items.reduce((acc, item) => acc + item.amount, 0), totalQtd: items.reduce((acc, item) => acc + item.quantity, 0) }}>
             {children}
         </ShoppingListContext.Provider>
     )

@@ -30,11 +30,11 @@ const ShoppingCart = () => {
 
 						<div className="grid grid-cols-2 gap-3">
 							<div className="rounded-2xl border border-stone-200 bg-white/80 px-4 py-3 text-center">
-								<p className="text-xs uppercase tracking-wider text-stone-500">Itens</p>
+								<p className="text-xs uppercase tracking-wider text-stone-500"><b>Itens</b></p>
 								<p className="text-xl font-semibold text-stone-800">{totalItems}</p>
 							</div>
 							<div className="rounded-2xl border border-stone-200 bg-white/80 px-4 py-3 text-center">
-								<p className="text-xs uppercase tracking-wider text-stone-500">Total</p>
+								<p className="text-xs uppercase tracking-wider text-stone-500"><b>Total</b></p>
 								<p className="text-xl font-semibold text-stone-800">
 									{formatCurrency(totalAmount)}
 								</p>
@@ -113,6 +113,8 @@ const ShoppingCart = () => {
 						})}
 					</div>
 				)}
+
+		
 			</div>
 		</section>
 	);

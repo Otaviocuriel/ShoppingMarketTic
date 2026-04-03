@@ -7,6 +7,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import type { ProductProps } from "../interfaces/Product";
 import { debounce } from "lodash";
 import List from "./List";
+import { useShoppingCartList } from "../contexts/ShoppingCart";
 import { useOnClickOutside } from "../hooks/useClickOutside";
 import { Link } from "react-router-dom";
 
@@ -18,6 +19,8 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 	const [productName, setProductName] = useState("");
 	const[isOpen, setIsOpen] = useState(false);
 	const refDropdown = useRef<HTMLUListElement>(null);
+	const { totalQtd } = useShoppingCartList();
+	
 
 
 	const { data: productByName } = useQuery<ProductProps[], Error>(["query-product-by-name", productName], async () => {
@@ -95,6 +98,12 @@ const Header = ({ onSearchChange }: HeaderProps) => {
         </div>
 				<Link className="flex" to="/ShoppingCart" relative="path">
 					<CiShoppingCart className="h-12 w-20"/>
+
+					{totalQtd > 0 && (
+						<div className="relative right-8 flex size-6 justify-center rounded-xl bg-blue-400">
+							<span>{totalQtd}</span>
+						</div>
+					)}
 				</Link>
       </div>
     </header>
