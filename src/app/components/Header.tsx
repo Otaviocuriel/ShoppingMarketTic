@@ -92,7 +92,7 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					}
 					
         </div>
-				<a>
+				<a href="/ShoppingCart">
 					<CiShoppingCart className="h-12 w-20"/>
 				</a>
       </div>
