@@ -8,6 +8,7 @@ import type { ProductProps } from "../interfaces/Product";
 import { debounce } from "lodash";
 import List from "./List";
 import { useOnClickOutside } from "../hooks/useClickOutside";
+import { Link } from "react-router-dom";
 
 type HeaderProps = {
 	onSearchChange?: (value: string) => void;
@@ -92,9 +93,9 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					}
 					
         </div>
-				<a href="/ShoppingCart">
+				<Link className="flex" to="/ShoppingCart" relative="path">
 					<CiShoppingCart className="h-12 w-20"/>
-				</a>
+				</Link>
       </div>
     </header>
   );
