@@ -1,4 +1,4 @@
-import type { Product } from "../../interfaces/Product";
+import type { Product } from "../interfaces/Product";
 
 const Card = ({item}: Product) => {
   return (

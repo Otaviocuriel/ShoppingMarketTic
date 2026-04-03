@@ -1,6 +1,6 @@
 import Card from "../components/Card";
-import ProductService from "../../services/product.service";
-import type { ProductProps } from "../../interfaces/Product";
+import ProductService from "../services/product.service";
+import type { ProductProps } from "../interfaces/Product";
 import { useQuery } from "react-query";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
