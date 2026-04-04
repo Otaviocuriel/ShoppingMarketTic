@@ -32,7 +32,7 @@ git clone https://github.com/Otaviocuriel/ShoppingMarketTic.git
 cd ShoppingMarketTic
 
 # Instale as dependências
-yarn
+yarn server
 
 # Inicie o servidor de desenvolvimento
 yarn dev
