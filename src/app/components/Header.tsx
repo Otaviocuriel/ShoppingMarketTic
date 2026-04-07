@@ -10,6 +10,7 @@ import List from "./List";
 import { useShoppingCartList } from "../contexts/ShoppingCart";
 import { useOnClickOutside } from "../hooks/useClickOutside";
 import { Link } from "react-router-dom";
+import authService from "../services/auth.service";
 
 type HeaderProps = {
 	onSearchChange?: (value: string) => void;
@@ -96,17 +97,30 @@ const Header = ({ onSearchChange }: HeaderProps) => {
 					}
 					
         </div>
-				<Link className="flex" to="/ShoppingCart" relative="path">
-					<CiShoppingCart className="h-12 w-20"/>
+				<div className="flex items-center justify-center">
+					<Link className="flex" to="/ShoppingCart" relative="path">
+						<CiShoppingCart className="h-12 w-20"/>
 
-					{totalQtd > 0 && (
-						<div className="relative right-8 flex size-6 justify-center rounded-xl bg-blue-400">
-							<span>{totalQtd}</span>
-						</div>
+							{totalQtd > 0 && (
+							<div className="relative right-8 flex size-6 justify-center rounded-xl bg-blue-400">
+								<span>{totalQtd}</span>
+							</div>
 					)}
-				</Link>
+					</Link>
+					{authService.getLoggedUser() !== null &&
+					<span 
+					className="cursor-pointer text-blue-500 hover:text-blue-700"
+					onClick={() => 
+						{authService.cleanLoggedUser();
+					 window.location.reload();
+					 }}>
+						Logout
+					</span>
+					}
+					
+				</div>
       </div>
-    </header>
+    </header>	
   );
 };
 

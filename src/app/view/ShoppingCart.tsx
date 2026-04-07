@@ -1,7 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { useShoppingCartList } from "../contexts/ShoppingCart";
+import authService from "../services/auth.service";
+import { useEffect } from "react";
 
 const ShoppingCart = () => {
+	const navigate = useNavigate();
+	
+		 useEffect(() => {
+						if (authService.getLoggedUser() === null) {
+				navigate("/login");
+			}
+			 }, [navigate])
+			 
 	const { items, addProduct, onDecrease, onRemove } = useShoppingCartList();
 
 	const totalItems = items.reduce((acc, item) => acc + item.quantity, 0);

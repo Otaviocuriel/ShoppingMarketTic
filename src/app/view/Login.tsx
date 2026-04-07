@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Input from "../components/input"
 import authService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,13 @@ const Login = () => {
         password:"",
     });
 
-   const navigate = useNavigate()
+   const navigate = useNavigate();
+
+	 useEffect(() => {
+        if (authService.getLoggedUser() !== null) {
+			navigate("/");
+		}
+     }, [navigate])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({...formData, [e.target.name]: e.target.value});

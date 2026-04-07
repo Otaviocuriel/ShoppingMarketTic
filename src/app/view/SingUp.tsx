@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import authService from "../services/auth.service";
 
 
 const SingUp = () => {
@@ -10,6 +11,12 @@ const SingUp = () => {
 	});
 
 	const navigate = useNavigate();
+	
+		 useEffect(() => {
+					if (authService.getLoggedUser() !== null) {
+				navigate("/");
+			}
+			 }, [navigate])
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
