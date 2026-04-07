@@ -1,7 +1,8 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import { ShoppingListProvider } from "./app/contexts/ShoppingCart";
 import Home from "./app/view/home";
-import Login from "./app/view/login";
+import Login from "./app/view/Login";
+import SingUp from "./app/view/SingUp";
 import Layout from "./app/components/Layout";
 import ShoppingCart from "./app/view/ShoppingCart";
 
@@ -10,6 +11,10 @@ function App() {
     {
       path: "/login",
       element: <Login/>,
+    },
+		{
+      path: "/register",
+      element: <SingUp/>,
     },
     {
       element: <Layout />,
